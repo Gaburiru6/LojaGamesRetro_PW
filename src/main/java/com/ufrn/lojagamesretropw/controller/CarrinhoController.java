@@ -36,6 +36,6 @@ public class CarrinhoController {
     public String verCarrinho(HttpSession session, Model model) {
         List<DomainJogo> itensDoCarrinho = carrinhoService.getItensDoCarrinho(session);
         model.addAttribute("itensCarrinho", itensDoCarrinho);
-        return "carrinho";
+        return "main";
     }
 }

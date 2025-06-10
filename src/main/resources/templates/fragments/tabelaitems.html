@@ -4,6 +4,7 @@
 <table border="1">
     <thead>
     <tr>
+        <th>img</th>
         <th>Nome</th>
         <th>genero</th>
         <th>classificação</th>
@@ -14,6 +15,7 @@
     </thead>
     <tbody>
     <tr th:each="Jogo : ${Jogos}">
+        <td><img th:src="@{images/${Jogo.imgUrl}}"></td>
         <td th:text="${Jogo.nomeJogo}"></td>
         <td th:text="${Jogo.genero}"></td>
         <td th:text="${Jogo.classificacao}"></td>

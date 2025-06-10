@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Random;
 
 @Controller
 @RequestMapping("/admin")
@@ -37,6 +38,10 @@ public class Admincontroller {
 
     @PostMapping("/cadastrar")
     public String salvarJogo(@ModelAttribute DomainJogo jogo) {
+        Random random = new Random();
+        int randomInt = random.nextInt(8);
+        String randomString = Integer.toString(randomInt);
+        jogo.setImgUrl(randomString);
         jogoService.save(jogo);
 
         return "redirect:/admin/index";
@@ -52,6 +57,13 @@ public class Admincontroller {
     @PostMapping("/deletar/{id}")
     public String deletarJogo(@PathVariable("id") Long id) {
         jogoService.softDelete(id);
+
+        return "redirect:/admin/index";
+    }
+
+    @PostMapping("/recuperar/{id}")
+    public String recuperarJogo(@PathVariable("id") Long id) {
+        jogoService.softRestore(id);
 
         return "redirect:/admin/index";
     }

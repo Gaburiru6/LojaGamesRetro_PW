@@ -27,18 +27,21 @@
         <td th:text="${Jogo.tipoMidia}"></td>
         <td>
             <a th:href="@{/admin/editar/{id}(id=${Jogo.id})}">
-                <button type="button">Editar</button> </a>
-        </td>
-        <td>
-            <form th:action="@{/admin/deletar/{id}(id=${jogo.id})}" method="post">
-                <button type="submit" onclick="return confirm('Tem certeza que deseja deletar este jogo?');">
+                <button type="button" class="btn btn-warning btn-sm">Editar</button>
+            </a>
+
+            <form th:if="${Jogo.isDeleted == null}" th:action="@{/admin/deletar/{id}(id=${Jogo.id})}" method="post" style="display: inline;">
+                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja deletar este jogo?');">
                     Deletar
                 </button>
             </form>
-        </td>
 
-<!--        <td th:href="${Jogo.deletar}"></td>-->
-<!--        <td th:href="${Jogo.tipoMidia}"></td>-->
+            <form th:if="${Jogo.isDeleted != null}" th:action="@{/admin/recuperar/{id}(id=${Jogo.id})}" method="post" style="display: inline;">
+                <button type="submit" class="btn btn-success btn-sm">
+                    Recuperar
+                </button>
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>

@@ -7,86 +7,36 @@
         <link type="text/css" rel="stylesheet" th:href="@{/css/style.css}"/>
     </head>
     <body>
-    <div th:insert="fragments/navbar :: #navigation"></div>
+    <div th:insert="fragments/header :: #navigation"></div>
     <head>
 
-        <div class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="section-title">
-                            <h3 class="title">Meu Carrinho de Compras</h3>
-                        </div>
-
-                        <div th:if="${#lists.isEmpty(itensCarrinho)}">
-                            <p>Seu carrinho está vazio.</p>
-                            <a th:href="@{/index}" class="primary-btn">Continuar Comprando</a>
-                        </div>
-
-                        <div th:if="${not #lists.isEmpty(itensCarrinho)}">
-                            <table class="table shopping-cart-table">
-                                <thead>
-                                <tr>
-                                    <th>Produto</th>
-                                    <th></th>
-                                    <th class="text-center">Preço Unitário</th>
-                                    <th class="text-center">Quantidade</th>
-                                    <th class="text-center">Preço Total</th>
-                                    <th class="text-right">Ações</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="item : ${itensCarrinho}">
-                                    <td class="thumb">
-                                        <img src="./img/thumb-product01.jpg" alt="">
-                                    </td>
-                                    <td class="details">
-                                        <a href="#" th:text="${item.jogo.nomeJogo}">Nome do Jogo</a>
-                                    </td>
-                                    <td class="price text-center">
-                                        <strong th:text="|R$ ${#numbers.formatDecimal(item.jogo.preco, 0, 'POINT', 2, 'COMMA')}|"></strong>
-                                    </td>
-                                    <td class="qty text-center">
-                                        <strong th:text="${item.quantidade}">1</strong>
-                                    </td>
-                                    <td class="total text-center">
-                                        <strong class="primary-color" th:text="|R$ ${#numbers.formatDecimal(item.jogo.preco.multiply(new BigDecimal(item.quantidade)), 0, 'POINT', 2, 'COMMA')}|"></strong>
-                                    </td>
-                                    <td class="text-right">
-                                        <a th:href="@{/carrinho/remover/{id}(id=${item.jogo.id})}" class="main-btn icon-btn"><i class="fa fa-trash"></i> Excluir</a>
-                                    </td>
-                                </tr>
-                                </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th class="empty" colspan="3"></th>
-                                    <th>SUB-TOTAL</th>
-                                    <th colspan="2" class="sub-total" th:text="|R$ ${#numbers.formatDecimal(subtotal, 0, 'POINT', 2, 'COMMA')}|"></th>
-                                </tr>
-                                <tr>
-                                    <th class="empty" colspan="3"></th>
-                                    <th>FRETE</th>
-                                    <td colspan="2">Grátis</td>
-                                </tr>
-                                <tr>
-                                    <th class="empty" colspan="3"></th>
-                                    <th>TOTAL</th>
-                                    <th colspan="2" class="total" th:text="|R$ ${#numbers.formatDecimal(subtotal, 0, 'POINT', 2, 'COMMA')}|"></th>
-                                </tr>
-                                </tfoot>
-                            </table>
-                            <div class="pull-right">
-                                <a th:href="@{/carrinho/checkout}" class="primary-btn">Finalizar Compra</a>
-                            </div>
-                        </div>
-                    </div>
+        <main class="container mt-5">
+            <div class="p-5 mb-4 bg-light rounded-3">
+                <div class="container-fluid py-5">
+                    <h1 class="display-5 fw-bold">Bem-vindo à Minha Loja!</h1>
+                    <p class="col-md-8 fs-4">Aqui você encontra os melhores produtos com a melhor qualidade. Explore nossas ofertas.</p>
+                    <button class="btn btn-primary btn-lg" type="button">Ver Produtos</button>
                 </div>
             </div>
-        </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <h2>Produto 1</h2>
+                    <p>Descrição breve do produto 1. Destaque para suas principais qualidades e características.</p>
+                    <p><a class="btn btn-secondary" href="#">Ver detalhes &raquo;</a></p>
+                </div>
+                <div class="col-md-4">
+                    <h2>Produto 2</h2>
+                    <p>Descrição breve do produto 2. Destaque para suas principais qualidades e características.</p>
+                    <p><a class="btn btn-secondary" href="#">Ver detalhes &raquo;</a></p>
+                </div>
+                <div class="col-md-4">
+                    <h2>Produto 3</h2>
+                    <p>Descrição breve do produto 3. Destaque para suas principais qualidades e características.</p>
+                    <p><a class="btn btn-secondary" href="#">Ver detalhes &raquo;</a></p>
+                </div>
+            </div>
+        </main>
         <div th:insert="fragments/footer :: footer"></div>
-
-
-
-
     </body>
     </html>

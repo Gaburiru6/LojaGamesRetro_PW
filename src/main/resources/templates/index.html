@@ -7,8 +7,9 @@
     <link type="text/css" rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
-<div th:insert="fragments/navbar :: #navigation"></div>
+<div th:insert="fragments/header :: #navigation"></div>
 <div th:insert="fragments/tabelaitems :: tabela"></div>
 
 </body>
+<footer th:insert="fragments/footer :: footer"></footer>
 </html>

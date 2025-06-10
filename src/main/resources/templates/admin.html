@@ -7,8 +7,11 @@
     <link type="text/css" rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
-<div th:insert="fragments/navbar :: #navigation"></div>
-<div th:insert="fragments/navbaradmin :: #navadm"></div>
+<div th:insert="fragments/header :: #navigation"></div>
+<a th:href="@{/admin/cadastrar}">
+    <button type="button" class="btn btn-success btn-sm">Cadastrar Produto</button>
+</a>
 <div th:insert="fragments/tabelaitensadm :: tabela"></div>
 </body>
+<footer th:insert="fragments/footer :: footer"></footer>
 </html>

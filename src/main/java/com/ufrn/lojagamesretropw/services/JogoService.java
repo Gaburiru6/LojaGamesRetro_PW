@@ -51,4 +51,15 @@ public class JogoService {
             jogoRepository.save(jogo);
         }
     }
+
+    @Transactional
+    public void softRestore(Long id) {
+        Optional<DomainJogo> jogoOptional = jogoRepository.findById(id);
+
+        if (jogoOptional.isPresent()) {
+            DomainJogo jogo = jogoOptional.get();
+            jogo.setIsDeleted(null);
+            jogoRepository.save(jogo);
+        }
+    }
 }
