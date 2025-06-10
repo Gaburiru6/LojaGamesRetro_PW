@@ -19,12 +19,13 @@ public class JogoService {
         return jogoRepository.findAll();
     }
 
-    public Optional<DomainJogo> findById(Long id) {
+    public  Optional<DomainJogo> findById(Long id) {
         return jogoRepository.findById(id);
     }
 
-    public DomainJogo save(DomainJogo jogo) {
-        return jogoRepository.save(jogo);
+    public void save(DomainJogo jogo) {
+        jogoRepository.save(jogo);
+       // System.out.println(jogo);
     }
 
     public void deleteById(Long id) {
