@@ -38,4 +38,5 @@ public class CarrinhoController {
         model.addAttribute("itensCarrinho", itensDoCarrinho);
         return "main";
     }
+    
 }
