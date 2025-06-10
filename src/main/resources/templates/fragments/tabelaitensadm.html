@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<body  th:fragment="tabela">
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>genero</th>
+        <th>classificação</th>
+        <th>Preço</th>
+        <th>estoque</th>
+        <th>midia</th>
+<!--        <th>editar</th>-->
+<!--        <th>deletar</th>-->
+<!--        <th>restaurar</th>-->
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="Jogo : ${Jogos}">
+        <td th:text="${Jogo.id}"></td>
+        <td th:text="${Jogo.nomeJogo}"></td>
+        <td th:text="${Jogo.genero}"></td>
+        <td th:text="${Jogo.classificacao}"></td>
+        <td th:text="${Jogo.preco}"></td>
+        <td th:text="${Jogo.estoque}"></td>
+        <td th:text="${Jogo.tipoMidia}"></td>
+        <td>
+            <a th:href="@{/admin/editar/{id}(id=${Jogo.id})}">
+                <button type="button">Editar</button> </a>
+        </td>
+        <td>
+            <form th:action="@{/admin/deletar/{id}(id=${jogo.id})}" method="post">
+                <button type="submit" onclick="return confirm('Tem certeza que deseja deletar este jogo?');">
+                    Deletar
+                </button>
+            </form>
+        </td>
+
+<!--        <td th:href="${Jogo.deletar}"></td>-->
+<!--        <td th:href="${Jogo.tipoMidia}"></td>-->
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -4,7 +4,6 @@
 <table border="1">
     <thead>
     <tr>
-        <th>ID</th>
         <th>Nome</th>
         <th>genero</th>
         <th>classificação</th>
@@ -15,10 +14,9 @@
     </thead>
     <tbody>
     <tr th:each="Jogo : ${Jogos}">
-        <td th:text="${Jogo.id}"></td>
         <td th:text="${Jogo.nomeJogo}"></td>
         <td th:text="${Jogo.genero}"></td>
-        <td th:text="${Jogo.classificação}"></td>
+        <td th:text="${Jogo.classificacao}"></td>
         <td th:text="${Jogo.preco}"></td>
         <td th:text="${Jogo.estoque}"></td>
         <td th:text="${Jogo.tipoMidia}"></td>

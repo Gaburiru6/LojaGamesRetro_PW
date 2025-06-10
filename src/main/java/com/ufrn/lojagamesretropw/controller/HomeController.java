@@ -19,7 +19,7 @@ public class HomeController {
 
     @GetMapping("/index")
     public String listarJogos(Model model) {
-        List<DomainJogo> jogos = jogoService.findAll();
+        List<DomainJogo> jogos = jogoService.findAllActive();
         model.addAttribute("Jogos", jogos);
         return "index";
     }

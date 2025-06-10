@@ -7,6 +7,7 @@
 <h1>Cadastrar Novo Jogo</h1>
 
 <form action="#" th:action="@{/admin/cadastrar}" th:object="${jogo}" method="post">
+    <input type="hidden" th:field="*{id}" />
 
     <p>Nome: <input type="text" th:field="*{nomeJogo}" /></p>
     <p>Gênero: <input type="text" th:field="*{genero}" /></p>
@@ -14,6 +15,7 @@
     <p>Preço: <input type="number" th:field="*{preco}" /></p>
     <p>Estoque: <input type="number" th:field="*{estoque}" /></p>
     <p>Tipo de Mídia: <input type="text" th:field="*{tipoMidia}" /></p>
+
 
     <p><input type="submit" value="Salvar" /> <input type="reset" value="Limpar" /></p>
 </form>
