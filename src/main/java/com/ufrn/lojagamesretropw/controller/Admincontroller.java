@@ -39,9 +39,10 @@ public class Admincontroller {
     @PostMapping("/cadastrar")
     public String salvarJogo(@ModelAttribute DomainJogo jogo) {
         Random random = new Random();
-        int randomInt = random.nextInt(8);
+        int randomInt = random.nextInt(9);
         String randomString = Integer.toString(randomInt);
-        jogo.setImgUrl(randomString);
+        jogo.setImgUrl(randomString+".jpeg");
+        System.out.println(jogo.getImgUrl());
         jogoService.save(jogo);
 
         return "redirect:/admin/index";
