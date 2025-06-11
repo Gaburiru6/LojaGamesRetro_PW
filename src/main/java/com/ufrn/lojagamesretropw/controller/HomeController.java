@@ -17,6 +17,13 @@ public class HomeController {
         this.jogoService = jogoService;
     }
 
+    // NOVO MÉTODO: Redireciona da raiz para /index
+    @GetMapping("/")
+    public String root() {
+        return "redirect:/index";
+    }
+
+
     @GetMapping("/index")
     public String listarJogos(Model model) {
         List<DomainJogo> jogos = jogoService.findAllActive();

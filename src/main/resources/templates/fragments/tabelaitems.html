@@ -1,27 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
-<body  th:fragment="tabela">
-<table border="1">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body th:fragment="tabela">
+<table border="1" class="table table-striped">
     <thead>
     <tr>
-        <th>img</th>
+        <th>Imagem</th>
         <th>Nome</th>
-        <th>genero</th>
-        <th>classificação</th>
+        <th>Gênero</th>
+        <th>Classificação</th>
         <th>Preço</th>
-        <th>estoque</th>
-        <th>midia</th>
+        <th>Estoque</th>
+        <th>Mídia</th>
+        <th>Ações</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="Jogo : ${Jogos}">
-        <td><img th:src="@{images/${Jogo.imgUrl}}"></td>
+        <td><img th:src="@{/images/{img}(img=${Jogo.imgUrl})}" alt="Imagem do Jogo" style="width:100px;"></td>
         <td th:text="${Jogo.nomeJogo}"></td>
         <td th:text="${Jogo.genero}"></td>
         <td th:text="${Jogo.classificacao}"></td>
-        <td th:text="${Jogo.preco}"></td>
+        <td th:text="${#numbers.formatCurrency(Jogo.preco)}"></td>
         <td th:text="${Jogo.estoque}"></td>
         <td th:text="${Jogo.tipoMidia}"></td>
+        <td>
+            <a th:href="@{/carrinho/adicionar/{id}(id=${Jogo.id})}" class="btn btn-primary btn-sm">Adicionar ao Carrinho</a>
+        </td>
     </tr>
     </tbody>
 </table>

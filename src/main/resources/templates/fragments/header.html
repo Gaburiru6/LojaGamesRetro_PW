@@ -1,24 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
-<!-- NAVIGATION -->
 <nav id="navigation" class="navHome">
-  <!-- container -->
   <div class="container">
-    <!-- responsive-nav -->
     <div id="responsive-nav">
-      <!-- NAV -->
       <ul class="main-nav nav navbar-nav">
         <li class="active"><a th:href="@{/index}">Home</a></li>
-        <li><a th:href="@{/admin/index}">Admin</a></li>
+
+        <li sec:authorize="hasRole('ADMIN')"><a th:href="@{/admin/index}">Admin</a></li>
+
         <li><a th:href="@{/carrinho/carrinho}">Carrinho</a></li>
+
+        <li sec:authorize="!isAuthenticated()"><a th:href="@{/login}">Login</a></li>
+
+        <li sec:authorize="isAuthenticated()">
+          <form th:action="@{/logout}" method="post" style="display: inline;">
+            <button type="submit" class="btn btn-link" style="padding: 20px 0px; color: #D10024; text-decoration: none;">
+              Logout (<span sec:authentication="name"></span>)
+            </button>
+          </form>
+        </li>
       </ul>
-      <!-- /NAV -->
     </div>
-    <!-- /responsive-nav -->
   </div>
-  <!-- /container -->
 </nav>
-<!-- /NAVIGATION -->
 </body>
 </html>

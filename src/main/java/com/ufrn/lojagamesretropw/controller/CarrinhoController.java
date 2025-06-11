@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import java.math.BigDecimal;
 
 import java.util.List;
 
@@ -36,7 +37,29 @@ public class CarrinhoController {
     public String verCarrinho(HttpSession session, Model model) {
         List<DomainJogo> itensDoCarrinho = carrinhoService.getItensDoCarrinho(session);
         model.addAttribute("itensCarrinho", itensDoCarrinho);
-        return "main";
+
+        BigDecimal total = itensDoCarrinho.stream()
+                .map(DomainJogo::getPreco)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        model.addAttribute("totalCarrinho", total);
+
+        return "carrinho"; // Direciona para a nova página carrinho.html
     }
-    
+
+    @GetMapping("/remover/{id}")
+    public String removerDoCarrinho(@PathVariable("id") Long idJogo, HttpSession session) {
+        carrinhoService.removerDoCarrinho(idJogo, session);
+        return "redirect:/carrinho/carrinho";
+    }
+
+    @GetMapping("/limpar")
+    public String limparCarrinho(HttpSession session) {
+        carrinhoService.limparCarrinho(session);
+        return "redirect:/carrinho/carrinho";
+    }
+    @GetMapping("/finalizar")
+    public String finalizarCompra() {
+        return "finalizar-compra";
+    }
+
 }

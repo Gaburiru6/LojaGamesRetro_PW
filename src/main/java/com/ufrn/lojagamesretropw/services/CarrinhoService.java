@@ -34,6 +34,11 @@ public class CarrinhoService {
             throw new RuntimeException("Jogo não encontrado com o ID: " + idJogo);
         }
     }
+    public void removerDoCarrinho(Long idJogo, HttpSession session) {
+        List<DomainJogo> carrinho = getCarrinho(session);
+        carrinho.removeIf(jogo -> jogo.getId() == idJogo);
+        session.setAttribute("carrinho", carrinho);
+    }
 
 
     public List<DomainJogo> getItensDoCarrinho(HttpSession session) {

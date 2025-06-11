@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Meu Carrinho</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<div th:insert="~{fragments/header :: #navigation}"></div>
+
+<div class="container" style="margin-top: 30px; margin-bottom: 30px;">
+    <h2>Meu Carrinho de Compras</h2>
+
+    <div th:if="${#lists.isEmpty(itensCarrinho)}">
+        <div class="alert alert-warning" role="alert">
+            Seu carrinho está vazio.
+        </div>
+        <a th:href="@{/index}" class="btn btn-primary">Continuar Comprando</a>
+    </div>
+
+    <div th:if="${not #lists.isEmpty(itensCarrinho)}">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th>Ação</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${itensCarrinho}">
+                <td><img th:src="@{/images/{img}(img=${item.imgUrl})}" alt="Imagem do Jogo" style="width:100px;"></td>
+                <td th:text="${item.nomeJogo}"></td>
+                <td th:text="${#numbers.formatCurrency(item.preco)}"></td>
+                <td>
+                    <a th:href="@{/carrinho/remover/{id}(id=${item.id})}" class="btn btn-danger btn-sm">Remover</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="text-right" style="margin-top: 20px;">
+            <h3>Total: <span th:text="${#numbers.formatCurrency(totalCarrinho)}"></span></h3>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <a th:href="@{/index}" class="btn btn-secondary">Continuar Comprando</a>
+            <a th:href="@{/carrinho/limpar}" class="btn btn-danger">Limpar Carrinho</a>
+            <a th:href="@{/carrinho/finalizar}" class="btn btn-success">Finalizar Compra</a>
+        </div>
+    </div>
+</div>
+
+<footer th:insert="~{fragments/footer :: footer}"></footer>
+</body>
+</html>
